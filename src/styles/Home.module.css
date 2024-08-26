@@ -18,6 +18,10 @@
   font-family: var(--font-mono);
 }
 
+.description h1 {
+  text-transform: capitalize;
+}
+
 .description a {
   display: flex;
   justify-content: center;
