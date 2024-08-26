@@ -6,6 +6,10 @@ import { Header } from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const handleClick = () => {
+    alert(1);
+  };
+
   return (
     <>
       <Head>
@@ -15,7 +19,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Main title='index'/>
+      <button onClick={handleClick}>ボタン</button>
+      <Main title="index" />
     </>
   );
 }
