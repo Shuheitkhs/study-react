@@ -2,13 +2,22 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import Main from "@/components/Main";
 import { Header } from "@/components/Header";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const handleClick = () => {
-    alert(1);
-  };
+  // const handleClick = () => {
+  //   alert(1);
+  // };
+  useEffect(() => {
+    console.log("マウント");
+    document.body.style.backgroundColor = "lightblue";
+    return () => {
+      console.log("アンマウント");
+      document.body.style.backgroundColor = "";
+    };
+  }, []);
 
   return (
     <>
@@ -19,7 +28,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <button onClick={handleClick}>ボタン</button>
+      {/* <button onClick={handleClick}>ボタン</button> */}
       <Main title="index" />
     </>
   );

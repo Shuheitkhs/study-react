@@ -3,18 +3,21 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Main.module.css";
 import { Links } from "@/components/Links";
 import { Headline } from "@/components/Headline";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 type MainProps = {
-    title: string;
-  };
+  title: string;
+};
 
-export default function Main({title}:MainProps) {
+export default function Main({ title }: MainProps) {
   return (
     <>
       <main className={`${styles.main} ${inter.className}`}>
-        <Headline title={title}>{<code className={styles.code}>src/pages/{title}.tsx</code>}</Headline>
+        <Headline title={title}>
+          {<code className={styles.code}>src/pages/{title}.tsx</code>}
+        </Headline>
 
         <div className={styles.center}>
           <Image
@@ -27,7 +30,7 @@ export default function Main({title}:MainProps) {
           />
         </div>
         <Links />
-              </main>
+      </main>
     </>
   );
 }
