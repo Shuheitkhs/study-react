@@ -1,19 +1,20 @@
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
+import { ReactNode } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 type HeadlineProps = {
     title: string;
+    children? : ReactNode
   };
 
-export function Headline( {title }: HeadlineProps  ) {
+export function Headline( {title , children }: HeadlineProps  ) {
   return (
         <div className={styles.description}>
           <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/{title}.tsx</code>
+            Get started by editing&nbsp; {children}
           </p>
           <div>
             <a
@@ -33,6 +34,7 @@ export function Headline( {title }: HeadlineProps  ) {
             </a>
           </div>
           <h1>{title}</h1>
+          
         </div>
 
   );
