@@ -7,6 +7,7 @@ export default function Home() {
   const [count, setCount] = useState(0);
   const [text, setText] = useState("ここにテキスト");
   const [isShow, setIsShow] = useState(true);
+  const [array, setArray] = useState<string[]>(["初期値"]);
 
   const handleClick = () => {
     setCount((prevCount) => prevCount + 1);
@@ -15,6 +16,16 @@ export default function Home() {
   const handleIsShow = useCallback(() => {
     setIsShow((prevIsShow) => !prevIsShow);
   }, []);
+
+  const handleAdd = useCallback(() => {
+    setArray((prevArray) => {
+      if (prevArray.some((item) => item === text)) {
+        alert("同じ要素がすでに存在します。");
+        return prevArray;
+      }
+      return [...prevArray, text];
+    });
+  }, [text]);
 
   useEffect(() => {
     console.log("マウント");
@@ -50,6 +61,12 @@ export default function Home() {
         }}
       />
       <h2>{text}</h2>
+      <button onClick={handleAdd}>リストを追加</button>
+      <ul>
+        {array.map((item) => {
+          return <li key={item}>{item}</li>;
+        })}
+      </ul>
       <Main title="index" />
     </>
   );
