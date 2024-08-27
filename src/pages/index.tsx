@@ -2,14 +2,17 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import Main from "@/components/Main";
 import { Header } from "@/components/Header";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  // const handleClick = () => {
-  //   alert(1);
-  // };
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+
   useEffect(() => {
     console.log("マウント");
     document.body.style.backgroundColor = "lightblue";
@@ -28,7 +31,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      {/* <button onClick={handleClick}>ボタン</button> */}
+      <h1>{count}</h1>
+      <button onClick={handleClick}>ボタン</button>
       <Main title="index" />
     </>
   );
