@@ -20,7 +20,7 @@ export default function Home() {
       console.log("アンマウント");
       document.body.style.backgroundColor = "";
     };
-  }, []);
+  }, [count]);
 
   return (
     <>
