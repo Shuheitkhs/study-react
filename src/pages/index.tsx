@@ -1,32 +1,13 @@
 import Head from "next/head";
 import Main from "@/components/Main";
 import { Header } from "@/components/Header";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useCounter } from "@/hooks/useCounter";
+import { useAddArray } from "@/hooks/useAddArray";
 
 export default function Home() {
-  const [count, setCount] = useState(0);
-  const [text, setText] = useState("ここにテキスト");
-  const [isShow, setIsShow] = useState(true);
-  const [array, setArray] = useState<string[]>(["初期値"]);
-
-  const handleClick = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
-
-  const handleIsShow = useCallback(() => {
-    setIsShow((prevIsShow) => !prevIsShow);
-  }, []);
-
-  const handleAdd = useCallback(() => {
-    setArray((prevArray) => {
-      if (prevArray.some((item) => item === text)) {
-        alert("同じ要素がすでに存在します。");
-        return prevArray;
-      }
-      return [...prevArray, text];
-    });
-  }, [text]);
-
+  const { count, isShow, handleClick, handleIsShow } = useCounter();
+  const { text, array, handleAdd, setText } = useAddArray();
   useEffect(() => {
     console.log("マウント");
     document.body.style.backgroundColor = "lightblue";
@@ -52,6 +33,7 @@ export default function Home() {
 
       <button onClick={handleIsShow}>{isShow ? "非表示" : "表示"}</button>
       <button onClick={handleClick}>カウントアップ</button>
+
       <input
         type="text"
         placeholder="入力してください"
